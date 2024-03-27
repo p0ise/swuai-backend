@@ -1,18 +1,18 @@
 import base64
 import hashlib
+import os.path
 import time
+from urllib.parse import urljoin
 
 import requests
 
-from config import APP_ID, API_KEY_FACE_FEATURE
+from .config import APP_ID, API_KEY_FACE_FEATURE
 
 
 class FaceFeatureClient:
     def __init__(self):
-        self.url_age = "http://tupapi.xfyun.cn/v1/age"
-        self.url_face_score = "http://tupapi.xfyun.cn/v1/face_score"
-        self.url_sex = "http://tupapi.xfyun.cn/v1/sex"
-        self.url_expression = "http://tupapi.xfyun.cn/v1/expression"
+        self.base_url = "http://tupapi.xfyun.cn/v1/"
+        self.types = ['age', 'sex', 'expression', 'face_score']
 
     def get_header(self, image_name, image_url=None):
         cur_time = str(int(time.time()))
@@ -31,22 +31,34 @@ class FaceFeatureClient:
         }
         return header
 
-    def analyze_age(self, image_name, image_url=None):
-        headers = self.get_header(image_name, image_url)
-        response = requests.post(self.url_age, headers=headers)
-        return response.json()
+    def analyze(self, type, image_url):
+        url = urljoin(self.base_url, type)
+        image_name = image_url.split('/')[-1]
+        if os.path.exists(image_url):
+            headers = self.get_header(image_name)
+            with open(image_name, 'rb') as f:
+                data = f.read()
+        else:
+            data = None
+            headers = self.get_header(image_name, image_url)
+        response = requests.post(url, data, headers=headers)
+        if response.status_code == 200:
+            result = response.json()
+            code = result['code']
+            if result['code'] == 0:
+                value = result['data']['file_list'][0]['label']
+            else:
+                value = result['desc']
+        else:
+            code = -1
+            value = '请求错误'
 
-    def analyze_face_score(self, image_name, image_url=None):
-        headers = self.get_header(image_name, image_url)
-        response = requests.post(self.url_face_score, headers=headers)
-        return response.json()
+        return code, value
 
-    def analyze_sex(self, image_name, image_url=None):
-        headers = self.get_header(image_name, image_url)
-        response = requests.post(self.url_sex, headers=headers)
-        return response.json()
-
-    def analyze_expression(self, image_name, image_url=None):
-        headers = self.get_header(image_name, image_url)
-        response = requests.post(self.url_expression, headers=headers)
-        return response.json()
+    def analyze_all(self, image_url):
+        results = []
+        for type in self.types:
+            code, value = self.analyze(type, image_url)
+            if code == 0:
+                results.append({type: value})
+        return results

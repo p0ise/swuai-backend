@@ -1,11 +1,12 @@
+import base64
 import datetime
 import json
 from urllib.parse import urlencode
 
 import requests
 
-from config import APP_ID, API_KEY_FACE_COMPARE, API_SECRET_FACE_COMPARE, SERVER_ID_FACE_COMPARE
-from utils import parse_url, generate_signature, assemble_authorization_header, encode_image
+from .config import APP_ID, API_KEY_FACE_COMPARE, API_SECRET_FACE_COMPARE, SERVER_ID_FACE_COMPARE
+from .utils import parse_url, generate_signature, assemble_authorization_header, encode_image
 
 
 class FaceCompareClient:
@@ -30,8 +31,8 @@ class FaceCompareClient:
         body = json.dumps({
             "header": {"app_id": APP_ID, "status": 3},
             "parameter": {SERVER_ID_FACE_COMPARE: {"service_kind": "face_compare",
-                                      "face_compare_result": {"encoding": "utf8", "compress": "raw",
-                                                              "format": "json"}}},
+                                                   "face_compare_result": {"encoding": "utf8", "compress": "raw",
+                                                                           "format": "json"}}},
             "payload": {
                 "input1": {"encoding": img1_type, "status": 3, "image": img1_encoded},
                 "input2": {"encoding": img2_type, "status": 3, "image": img2_encoded}
@@ -39,4 +40,15 @@ class FaceCompareClient:
         })
 
         response = requests.post(request_url, data=body, headers=headers)
-        return json.loads(response.content.decode('utf-8'))
+        if response.status_code == 200:
+            result = json.loads(response.text)
+            code = result['header']['code']
+            if code == 0:
+                data = json.loads(base64.b64decode(result['payload']['face_compare_result']['text']))['score']
+            else:
+                data = result['header']['message']
+        else:
+            code = -1
+            data = '请求错误'
+
+        return code, data
