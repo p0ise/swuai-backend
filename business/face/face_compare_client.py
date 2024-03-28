@@ -22,6 +22,9 @@ class FaceCompareClient:
         return f"{self.base_url}?{urlencode(values)}"
 
     def compare_faces(self, img1_path, img2_path):
+        code = 0
+        data = None
+
         request_url = self.generate_request_url()
         headers = {'content-type': "application/json", 'host': 'api.xf-yun.com', 'app_id': APP_ID}
 
@@ -44,7 +47,12 @@ class FaceCompareClient:
             result = json.loads(response.text)
             code = result['header']['code']
             if code == 0:
-                data = json.loads(base64.b64decode(result['payload']['face_compare_result']['text']))['score']
+                compare_result = json.loads(base64.b64decode(result['payload']['face_compare_result']['text']))
+                code = compare_result['ret']
+                if code == 0:
+                    data = compare_result['score']
+                else:
+                    data = '请求失败'
             else:
                 data = result['header']['message']
         else:

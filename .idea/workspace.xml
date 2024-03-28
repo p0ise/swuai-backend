@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update env files">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update env file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/face/face_compare_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/face/face_compare_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +120,7 @@
       <workItem from="1711458247779" duration="816000" />
       <workItem from="1711459737813" duration="8160000" />
       <workItem from="1711510160976" duration="13258000" />
-      <workItem from="1711586058377" duration="2122000" />
+      <workItem from="1711586058377" duration="3289000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -178,7 +178,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711590286932</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add .gitignore">
+      <option name="closed" value="true" />
+      <created>1711590597671</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711590597671</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update env file">
+      <option name="closed" value="true" />
+      <created>1711590829881</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711590829881</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,11 +219,13 @@
     <MESSAGE value="add env files" />
     <MESSAGE value="fix some bugs and optimize the api" />
     <MESSAGE value="update env files" />
-    <option name="LAST_COMMIT_MESSAGE" value="update env files" />
+    <MESSAGE value="add .gitignore" />
+    <MESSAGE value="update env file" />
+    <option name="LAST_COMMIT_MESSAGE" value="update env file" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/iflyface$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711506810545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/iflyface_backend$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711586482571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iflyface_backend$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711592650687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/iflyface$Flask__hello_py_.coverage" NAME="Flask (hello.py) 覆盖结果" MODIFIED="1711459053617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
