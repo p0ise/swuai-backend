@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="fix some bugs and optimize the api">
-      <change afterPath="$PROJECT_DIR$/.idea/poetry.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/iflyface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/iflyface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update env files">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/face/face_compare_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/face/face_compare_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/face/face_feature_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/face/face_feature_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +35,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "p0ise"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="1410cdc2-b2ba-469b-ae38-28d431d2598e" />
+        <option name="url" value="https://github.com/p0ise/iflyface-backend.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -70,6 +79,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\dev\ai\iflyface-backend" />
       <recent name="E:\dev\ai\iflyface\templates" />
     </key>
   </component>
@@ -110,7 +120,7 @@
       <workItem from="1711458247779" duration="816000" />
       <workItem from="1711459737813" duration="8160000" />
       <workItem from="1711510160976" duration="13258000" />
-      <workItem from="1711586058377" duration="1683000" />
+      <workItem from="1711586058377" duration="2122000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -152,7 +162,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711510330561</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix some bugs and optimize the api">
+      <option name="closed" value="true" />
+      <created>1711590145679</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711590145679</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update env files">
+      <option name="closed" value="true" />
+      <created>1711590286932</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711590286932</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +202,8 @@
     <MESSAGE value="Implement RESTful API" />
     <MESSAGE value="add env files" />
     <MESSAGE value="fix some bugs and optimize the api" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix some bugs and optimize the api" />
+    <MESSAGE value="update env files" />
+    <option name="LAST_COMMIT_MESSAGE" value="update env files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/iflyface$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711506810545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
