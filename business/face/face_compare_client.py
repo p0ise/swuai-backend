@@ -52,7 +52,7 @@ class FaceCompareClient:
                 if code == 0:
                     data = compare_result['score']
                 else:
-                    data = '请求失败'
+                    data = '非人像图片'
             else:
                 data = result['header']['message']
         else:
