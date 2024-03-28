@@ -14,10 +14,11 @@ class FaceFeatureClient:
         self.base_url = "http://tupapi.xfyun.cn/v1/"
         self.types = ['age', 'sex', 'expression', 'face_score']
 
-    def get_header(self, image_name, image_url=None):
+    def get_header(self, image_name):
         cur_time = str(int(time.time()))
-        param = {"image_name": image_name, "image_url": image_url}
-        param_base64 = base64.b64encode(str(param).encode('utf-8'))
+        # param = {"image_name": image_name, "image_url": ''}
+        param = "{\"image_name\":\"" + image_name + "\",\"image_url\":\"\"}"
+        param_base64 = base64.b64encode(param.encode("utf-8"))
 
         m2 = hashlib.md5()
         m2.update((API_KEY_FACE_FEATURE + cur_time + str(param_base64, 'utf-8')).encode('utf-8'))
@@ -31,22 +32,18 @@ class FaceFeatureClient:
         }
         return header
 
-    def analyze(self, type, image_url):
+    def analyze(self, type, image_path):
         url = urljoin(self.base_url, type)
-        image_name = image_url.split('/')[-1]
-        if os.path.exists(image_url):
-            headers = self.get_header(image_name)
-            with open(image_name, 'rb') as f:
-                data = f.read()
-        else:
-            data = None
-            headers = self.get_header(image_name, image_url)
+        image_name = os.path.basename(image_path)
+        headers = self.get_header(image_name)
+        with open(image_path, 'rb') as f:
+            data = f.read()
         response = requests.post(url, data, headers=headers)
         if response.status_code == 200:
             result = response.json()
             code = result['code']
-            if result['code'] == 0:
-                value = result['data']['file_list'][0]['label']
+            if code == 0:
+                value = result['data']['fileList'][0]['label']
             else:
                 value = result['desc']
         else:
@@ -55,10 +52,10 @@ class FaceFeatureClient:
 
         return code, value
 
-    def analyze_all(self, image_url):
-        results = []
+    def analyze_all(self, image_path):
+        results = {}
         for type in self.types:
-            code, value = self.analyze(type, image_url)
+            code, value = self.analyze(type, image_path)
             if code == 0:
-                results.append({type: value})
-        return results
+                results[type] = value
+        return {"results": results}
