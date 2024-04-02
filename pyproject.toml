@@ -7,6 +7,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+flask = "^3.0.2"
+requests = "^2.31.0"
+numpy = "^1.26.4"
+torchvision = "^0.17.2"
 
 
 [build-system]

@@ -28,7 +28,8 @@ def generate_signature(api_secret, host, date, method, path):
 
 
 def assemble_authorization_header(api_key, signature_sha):
-    authorization_origin = f'api_key="{api_key}", algorithm="hmac-sha256", headers="host date request-line", signature="{signature_sha}"'
+    authorization_origin = (f'api_key="{api_key}", algorithm="hmac-sha256", '
+                            f'headers="host date request-line", signature="{signature_sha}"')
     return base64.b64encode(authorization_origin.encode('utf-8')).decode('utf-8')
 
 

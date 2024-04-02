@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <title>实时人脸检测与标注</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            const socket = io();
+            const video = document.getElementById('videoElement');
+            const overlay = document.getElementById('overlay');
+            const overlayCtx = overlay.getContext('2d');
+            let lastSentTimestamp = Date.now();
+            let stream = null;
+            let streamingInterval = null;
+            let lastDetectionResults = []; // 存储最近一次的人脸检测结果
+            let selectedFace = null; // 保存当前选中的人脸框
+
+            function sendFrame() {
+                const currentTimestamp = Date.now();
+                lastSentTimestamp = currentTimestamp;
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                const data = canvas.toDataURL('image/jpeg');
+                if (data && data.length > 0 && !data.endsWith('data:,') /* 检查字符串是否有效 */) {
+                    socket.emit('frame', {image: data, timestamp: currentTimestamp});
+                } else {
+                    console.error("Captured frame is empty or invalid.");
+                }
+            }
+
+            function redraw() {
+                if (stream) {
+                    // 清除之前的绘制
+                    overlayCtx.clearRect(0, 0, overlay.width, overlay.height);
+
+                    // 重新绘制所有人脸框
+                    lastDetectionResults.forEach(face => {
+                        const {index, location, name} = face;
+                        const text = name + "#" + index;
+                        let [top, right, bottom, left] = location;
+                        let width = right - left;
+                        let height = bottom - top;
+
+                        // 如果当前绘制的框是选中状态，使用特殊颜色或宽度高亮显示
+                        if (selectedFace && index === selectedFace.index) {
+                            overlayCtx.strokeStyle = 'yellow'; // 高亮颜色
+                            overlayCtx.lineWidth = 4; // 增加边框宽度以高亮显示
+                            overlayCtx.fillStyle = 'yellow';
+                        } else {
+                            overlayCtx.strokeStyle = 'red';
+                            overlayCtx.lineWidth = 2;
+                            overlayCtx.fillStyle = 'red';
+                        }
+                        overlayCtx.font = '14px Arial';
+
+                        overlayCtx.strokeRect(left, top, width, height);
+                        overlayCtx.fillText(text, left, top - 10);
+
+                        // 重置为默认状态以供下一个框使用
+                        overlayCtx.strokeStyle = 'red';
+                        overlayCtx.lineWidth = 2;
+                    });
+                }
+            }
+
+
+            socket.on('connect', function () {
+                console.log("Connected");
+            });
+
+            socket.on('detection_results', function (data) {
+                // 清除之前的绘制
+                overlayCtx.clearRect(0, 0, overlay.width, overlay.height);
+                if (data.timestamp === lastSentTimestamp) {
+                    lastDetectionResults = data.faces; // 更新最近一次的检测结果
+                    redraw();
+                } else {
+                    lastDetectionResults = [];
+                }
+            });
+
+            $("#overlay").click(function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const clickedFace = lastDetectionResults.find(face => {
+                    const [top, right, bottom, left] = face.location;
+                    return x >= left && x <= right && y >= top && y <= bottom;
+                });
+
+                if (clickedFace) {
+                    $("#faceIndex").val(clickedFace.index);
+                    selectedFace = clickedFace; // 更新选中的人脸框
+                    redraw(); // 触发重绘以显示新的高亮状态
+                } else {
+                    selectedFace = null;
+                    redraw();
+                }
+            });
+
+            $("#startCamera").click(function() {
+                if (stream === null) {
+                    navigator.mediaDevices.getUserMedia({video: true})
+                        .then(function (mediaStream) {
+                            stream = mediaStream;
+                            video.srcObject = mediaStream;
+                            video.play();
+                            streamingInterval = setInterval(sendFrame, 100);
+                            $("#videoPlaceholder").hide(); // 开启摄像头时隐藏提示信息
+                        })
+                        .catch(function (err) {
+                            console.log("An error occurred: " + err);
+                        });
+                }
+            });
+
+            $("#stopCamera").click(function() {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    video.srcObject = null;
+                    stream = null;
+                    clearInterval(streamingInterval);
+                    overlayCtx.clearRect(0, 0, overlay.width, overlay.height);
+                    $("#videoPlaceholder").show(); // 关闭摄像头时显示提示信息
+                }
+            });
+
+            $("#renameBtn").click(function() {
+                const faceIndexStr = document.getElementById('faceIndex').value;
+                const newName = document.getElementById('newName').value;
+                if (faceIndexStr && newName) {
+                    // 将faceIndex字符串转换为整数
+                    const faceIndex = parseInt(faceIndexStr, 10);
+                    // 确保转换成功，parseInt会在转换失败时返回NaN
+                    if (!isNaN(faceIndex)) {
+                        const data = {index: faceIndex, name: newName};
+                        socket.emit('rename_face', data); // 发送索引和新名称到后端
+                    } else {
+                        console.error("Face index is not a valid number.");
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center; /* 让文本居中 */
+        }
+
+        #videoCanvasWrapper {
+            position: relative;
+            width: 640px;
+            height: 480px;
+            margin-bottom: 20px; /* 添加一些间隙 */
+            background-color: #000; /* 默认背景颜色 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #videoElement, #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #videoPlaceholder {
+            color: #fff; /* 文字颜色 */
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #333;
+            margin: 20px 0;
+        }
+
+        input[type="text"], button {
+            margin: 5px; /* 给输入框和按钮添加一些外边距 */
+            padding: 10px; /* 增加内填充 */
+            border-radius: 5px; /* 添加边框圆角 */
+            border: 1px solid #ccc; /* 边框样式 */
+        }
+
+        button {
+            cursor: pointer; /* 鼠标悬停时显示手形光标 */
+            background-color: #f0f0f0; /* 背景颜色 */
+        }
+
+        button:hover {
+            background-color: #e2e2e2; /* 鼠标悬停时的背景颜色 */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center; /* 控制元素水平居中 */
+            gap: 10px; /* 元素之间的间隙 */
+        }
+    </style>
+</head>
+<body>
+    <h1>实时人脸检测与标注</h1>
+    <div id="videoCanvasWrapper">
+        <video id="videoElement" autoplay playsinline width="640" height="480"></video>
+        <canvas id="overlay" width="640" height="480"></canvas>
+        <div id="videoPlaceholder">摄像头未开启，请点击“开启摄像头”按钮。</div>
+    </div>
+    <div class="controls">
+        <button id="startCamera">开启摄像头</button>
+        <button id="stopCamera">关闭摄像头</button>
+        <input type="text" id="faceIndex" placeholder="输入人脸编号">
+        <input type="text" id="newName" placeholder="输入新名称">
+        <button id="renameBtn">重命名</button>
+    </div>
+</body>
+</html>
