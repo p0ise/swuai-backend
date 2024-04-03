@@ -2,8 +2,8 @@ import os
 import tempfile
 import uuid
 
-from business.face import parse_frame_data, recognize_faces, rename_face
-from flask import Flask, render_template, request, session
+from face_recognition import parse_frame_data, recognize_faces, rename_face
+from flask import Flask, request, session
 from flask import jsonify
 from flask_cors import CORS
 from flask_socketio import SocketIO, Namespace, emit, disconnect
@@ -15,10 +15,8 @@ from business.face import FaceCompareClient, FaceFeatureClient
 async_mode = None
 
 app = Flask(__name__)
-CORS(app)
-socketio = SocketIO(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
-CORS(app, resources={r"/socket.io/*": {"origins": "*"}})
+CORS(app)
 
 # 配置上传文件夹和允许的扩展
 UPLOAD_FOLDER = 'static/uploads'
