@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update project structure">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update project dependencies">
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +184,7 @@
       <workItem from="1711510160976" duration="13258000" />
       <workItem from="1711586058377" duration="3713000" />
       <workItem from="1712131559220" duration="2405000" />
-      <workItem from="1712631030801" duration="3290000" />
+      <workItem from="1712631030801" duration="3654000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -276,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712132073828</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update project dependencies">
+      <option name="closed" value="true" />
+      <created>1712669125321</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1712669125321</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +323,8 @@
     <MESSAGE value="update env file" />
     <MESSAGE value="Bug fix: deal with when face_compare return non-zero ret" />
     <MESSAGE value="update project structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="update project structure" />
+    <MESSAGE value="update project dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="update project dependencies" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/iflyface$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711506810545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

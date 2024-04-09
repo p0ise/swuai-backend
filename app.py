@@ -2,12 +2,13 @@ import os
 import tempfile
 import uuid
 
-from face_recognition import parse_frame_data, recognize_faces, rename_face
 from flask import Flask, request, session
 from flask import jsonify
 from flask_cors import CORS
 from flask_socketio import SocketIO, Namespace, emit, disconnect
+
 from business.face import FaceCompareClient, FaceFeatureClient
+from face_recognition import parse_frame_data, recognize_faces, rename_face
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
 # different async modes, or leave it set to None for the application to choose
@@ -15,8 +16,8 @@ from business.face import FaceCompareClient, FaceFeatureClient
 async_mode = None
 
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 # 配置上传文件夹和允许的扩展
 UPLOAD_FOLDER = 'static/uploads'
@@ -24,11 +25,13 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'bmp'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
+# Utility function to check allowed file
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+# Utility function to generate a secure filename
 def secure_filename(filename):
     # 使用UUID或其他方法生成唯一的文件名
     unique_filename = str(uuid.uuid4())
@@ -37,7 +40,8 @@ def secure_filename(filename):
     return safe_filename
 
 
-@app.route('/api/face-compare', methods=['POST'])
+# 讯飞API - 人脸比对
+@app.route('/api/xunfei/face-compare', methods=['POST'])
 def face_compare():
     # 检查是否上传了两个文件
     if 'image1' not in request.files or 'image2' not in request.files:
@@ -67,7 +71,8 @@ def face_compare():
         return jsonify({'error': data}), 400
 
 
-@app.route('/api/face-features', methods=['POST'])
+# 讯飞API - 人脸特征分析
+@app.route('/api/xunfei/face-features', methods=['POST'])
 def face_features():
     if 'image' not in request.files:
         return jsonify({'error': '缺少文件参数'}), 400
@@ -89,9 +94,23 @@ def face_features():
     return jsonify(result)
 
 
-@app.route('/api/face-recognition', methods=['POST'])
-# WebSocket连接事件处理
-class MyNamespace(Namespace):
+# 人脸认证的命名空间
+class FaceAuthNamespace(Namespace):
+    def on_connect(self):
+        print("Client connected to Face Auth")
+
+    def on_disconnect(self):
+        print("Client disconnected from Face Auth")
+
+    def on_authenticate(self, data):
+        # 这里是处理认证的代码
+        # result = verify_face(data['image'])
+        # emit('auth_response', {'success': result})
+        pass
+
+
+# 实时人脸识别的命名空间
+class FaceRecognitionNamespace(Namespace):
 
     def on_disconnect_request(self):
         emit('my_response',
@@ -124,7 +143,9 @@ class MyNamespace(Namespace):
         print('Client disconnected', request.sid)
 
 
-socketio.on_namespace(MyNamespace('/api/face-recognition'))
+# 注册命名空间
+socketio.on_namespace(FaceAuthNamespace('/api/face_auth'))
+socketio.on_namespace(FaceRecognitionNamespace('/api/face_recognition'))
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)
