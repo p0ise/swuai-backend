@@ -8,7 +8,8 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, Namespace, emit, disconnect
 
 from business.face import FaceCompareClient, FaceFeatureClient
-from face_recognition import parse_frame_data, recognize_faces, rename_face
+from face_recognition import recognize_faces, rename_face
+from utils.image_processing import parse_frame_data
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
 # different async modes, or leave it set to None for the application to choose
@@ -102,10 +103,16 @@ class FaceAuthNamespace(Namespace):
     def on_disconnect(self):
         print("Client disconnected from Face Auth")
 
-    def on_authenticate(self, data):
-        # 这里是处理认证的代码
-        # result = verify_face(data['image'])
-        # emit('auth_response', {'success': result})
+    def on_register(self, data):
+        """
+        处理用户注册事件
+        """
+        pass
+
+    def on_login(self, data):
+        """
+        处理用户登录事件
+        """
         pass
 
 
@@ -137,15 +144,15 @@ class FaceRecognitionNamespace(Namespace):
         rename_face(face_index, name)
 
     def on_connect(self):
-        emit('my_response', {'data': 'Connected', 'count': 0})
+        print("Client connected to Face Recognition")
 
     def on_disconnect(self):
-        print('Client disconnected', request.sid)
+        print('Client disconnected from Face Recognition', request.sid)
 
 
 # 注册命名空间
-socketio.on_namespace(FaceAuthNamespace('/api/face_auth'))
-socketio.on_namespace(FaceRecognitionNamespace('/api/face_recognition'))
+socketio.on_namespace(FaceAuthNamespace('/api/face-auth'))
+socketio.on_namespace(FaceRecognitionNamespace('/api/face-recognition'))
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)
