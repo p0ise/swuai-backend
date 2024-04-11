@@ -31,13 +31,8 @@ def find_primary_face(image):
                      如果没有检测到人脸，则返回None。
     """
     boxes, probs, landmarks = mtcnn.detect(image, landmarks=True)
-    if boxes is not None and len(boxes) > 0:
-        # 选择置信度最高的人脸作为最显著的人脸
-        max_prob_index = np.argmax(probs)
-        primary_box = boxes[max_prob_index]
-        primary_prob = probs[max_prob_index]
-        primary_landmark = landmarks[max_prob_index]
-        return primary_box, primary_prob, primary_landmark
+    if boxes is not None:
+        return boxes[0], probs[0], landmarks[0]
     else:
         return None
 
