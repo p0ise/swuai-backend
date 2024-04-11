@@ -7,7 +7,7 @@ from flask import jsonify
 from flask_cors import CORS
 from flask_socketio import SocketIO, Namespace, emit, disconnect
 
-from business.face import FaceCompareClient, FaceFeatureClient
+from business.xunfei import FaceCompareClient, FaceFeatureClient
 from services.authentication import authenticate_face
 from services.recognition import recognize_faces, rename_face
 from services.registration import register_face
