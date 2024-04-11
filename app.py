@@ -8,7 +8,7 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, Namespace, emit, disconnect
 
 from business.face import FaceCompareClient, FaceFeatureClient
-from face_recognition import recognize_faces, rename_face
+from services.recognition import recognize_faces, rename_face
 from utils.image_processing import parse_frame_data
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
@@ -139,9 +139,9 @@ class FaceRecognitionNamespace(Namespace):
 
     def on_rename_face(self, data):
         # TODO: 增加对重命名结果的处理
-        face_index = data['index']
+        face_id = data['id']
         name = data['name']
-        rename_face(face_index, name)
+        rename_face(face_id, name)
 
     def on_connect(self):
         print("Client connected to Face Recognition")

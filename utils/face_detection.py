@@ -48,20 +48,27 @@ def align_face(image, box, landmark):
     eye_right = np.array(landmark[1])
     d_y = eye_right[1] - eye_left[1]
     d_x = eye_right[0] - eye_left[0]
-    angle = np.degrees(np.arctan2(d_y, d_x)) - 180
+    angle = np.degrees(np.arctan2(d_y, d_x))
 
-    # 应用仿射变换对齐人脸
-    desired_width = 160
-    desired_height = 160
-    desired_dist = desired_width * 0.5
-    eyes_center = ((eye_left[0] + eye_right[0]) // 2, (eye_left[1] + eye_right[1]) // 2)
+    # 计算box中心作为旋转中心
+    box_center = ((box[0] + box[2]) / 2, (box[1] + box[3]) / 2)
+
+    # 将PIL.Image转换为numpy数组以便使用cv2函数处理
+    image_np = np.array(image)
+
+    # 应用仿射变换对齐整个画面
     scale = 1
-    m = cv2.getRotationMatrix2D(eyes_center, angle, scale)
-    # 更新仿射变换矩阵的平移量
-    m[0, 2] += desired_dist - eyes_center[0]
-    m[1, 2] += desired_height * 0.4 - eyes_center[1]
+    M = cv2.getRotationMatrix2D(box_center, angle, scale)
+    rotated_image_np = cv2.warpAffine(image_np, M, (image_np.shape[1], image_np.shape[0]))
 
-    # 应用仿射变换
-    aligned = cv2.warpAffine(np.array(image), m, (desired_width, desired_height), flags=cv2.INTER_CUBIC)
+    # 将旋转后的numpy数组图像转换回PIL.Image
+    rotated_image = Image.fromarray(rotated_image_np)
 
-    return Image.fromarray(aligned)
+    # 从旋转后的图像中截取人脸区域
+    face_image = rotated_image.crop(box)
+
+    # 缩放图像到指定的尺寸
+    aligned_face = face_image.resize((160, 160))
+
+    return aligned_face
+

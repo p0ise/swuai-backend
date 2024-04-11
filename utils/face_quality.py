@@ -1,42 +1,52 @@
 import numpy as np
 
-
 def is_face_forward(landmarks):
     """
-    判断人脸是否正对相机，并考虑人脸的俯仰角。
+    判断人脸是否正对相机,并考虑人脸的俯仰角。
 
     参数:
-    - landmarks: 人脸的关键点坐标，假设是一个包含五个关键点（两只眼睛、鼻尖、两只嘴角）的列表。
+    - landmarks: 人脸的关键点坐标,假设是一个包含五个关键点(两只眼睛、鼻尖、两只嘴角)的列表。
 
     返回:
-    - is_forward: 布尔值，表示人脸是否正对相机，没有显著的俯仰、偏航或滚动角。
+    - is_forward: 布尔值,表示人脸是否正对相机,没有显著的俯仰、偏航或滚动角。
     """
     # 提取两只眼睛和鼻尖的坐标
     eye_left = np.array(landmarks[0])
     eye_right = np.array(landmarks[1])
     nose = np.array(landmarks[2])
+    mouth_left = np.array(landmarks[3])
+    mouth_right = np.array(landmarks[4])
 
-    # 计算眼睛水平和垂直方向的差异
-    horizontal_diff = abs(eye_left[1] - eye_right[1])
-    vertical_diff = abs(eye_left[0] - eye_right[0])
+    # 计算中点
+    eye_center = (eye_left + eye_right) / 2
 
-    # 计算眼睛中心点
-    eye_center = ((eye_left[0] + eye_right[0]) / 2, (eye_left[1] + eye_right[1]) / 2)
+    # 计算方向向量
+    direction_vector = eye_right - eye_left
 
-    # 计算鼻尖到眼睛中心线的垂直距离
-    vertical_nose_diff = abs(nose[1] - eye_center[1])
+    # 计算单位向量
+    unit_vector = direction_vector / np.linalg.norm(direction_vector)
 
-    # 计算眼睛中心到鼻尖的直线距离，以估计俯仰角
-    pitch_diff = np.linalg.norm(nose - eye_center)
+    # 计算鼻子到左右眼连线的向量
+    nose_to_eye_line_vector = nose - eye_left
 
-    # 姿态判断逻辑，这里可以根据实际情况调整阈值
-    if horizontal_diff < 0.1 * vertical_diff and vertical_nose_diff < 0.1 * vertical_diff and pitch_diff < 0.2 * vertical_diff:
+    # 计算投影长度
+    projection_length = np.dot(nose_to_eye_line_vector, unit_vector)
+
+    # 计算垂足坐标
+    foot_of_perpendicular = eye_left + projection_length * unit_vector
+
+    # 计算垂足到中点的距离
+    foot_offset = np.linalg.norm(foot_of_perpendicular - eye_center)
+    eye_dist = np.linalg.norm(eye_right - eye_left)
+
+    # 设定偏移量阈值,判断是否为正面
+    threshold = 0.1 * eye_dist
+    if foot_offset < threshold:
         return True
     else:
         return False
 
-
-def evaluate_face_quality(box, prob, image, landmarks, quality_threshold=0.5):
+def evaluate_face_quality(box, prob, image, landmarks, quality_threshold=0.8):
     """
     根据人脸的大小、置信度和其他因素来评估人脸的质量。
     返回是否通过质量检查。
@@ -58,18 +68,10 @@ def evaluate_face_quality(box, prob, image, landmarks, quality_threshold=0.5):
     # 置信度分数，prob在0到1之间
     confidence_score = prob
 
-    # 加入姿态评分（基于眼睛和鼻子的位置简单估计头部是否正对摄像头）
-    eye_left, eye_right, nose = landmarks[:3]
-    dx = eye_right[0] - eye_left[0]
-    dy = eye_right[1] - eye_left[1]
-    eye_dist = np.sqrt(dx ** 2 + dy ** 2)
-    nose_eye_center_dist = np.sqrt((nose[0] - (eye_left[0] + eye_right[0]) / 2) ** 2 +
-                                   (nose[1] - (eye_left[1] + eye_right[1]) / 2) ** 2)
-    pose_score = 1 - min(nose_eye_center_dist / eye_dist, 1)  # 简化版的姿态评分
-
     # 综合评分
-    quality_score = size_score * confidence_score * pose_score
+    quality_score = size_score * confidence_score
 
+    print(quality_score)
     if quality_score > quality_threshold:
         return True
     else:
