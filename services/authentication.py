@@ -22,10 +22,9 @@ def authenticate_face(image):
         if evaluate_face_quality(box, prob, image, landmark):
             aligned_face = align_face(image, box, landmark)
             face_encoding = encode_face(aligned_face)
-            matched_face_id = face_storage.match_face(face_encoding)
-            if matched_face_id:
-                face_info = face_storage.get_face_info(matched_face_id)
-                return True, f"认证成功，欢迎 {face_info['name']}"
+            matched_face = face_storage.match_face(face_encoding)
+            if matched_face:
+                return True, f"认证成功，欢迎 {matched_face['name']}"
             else:
                 return False, "认证失败，未知人脸"
         else:

@@ -109,28 +109,31 @@ class FaceAuthNamespace(Namespace):
         """
         处理用户注册事件。
         """
+        print(data)
         image_data = data['image']
         username = data['username']
+        timestamp = data['timestamp']
         if image_data.endswith('data:,'):
             print('Empty frame data')
             emit('register_response', {'success': False, 'message': 'Empty frame data'})
             return
         image = parse_frame_data(image_data)
         success, message = register_face(image, username)
-        emit('register_response', {'success': success, 'message': message})
+        emit('register_response', {'success': success, 'message': message, 'timestamp': timestamp})
 
     def on_login(self, data):
         """
         处理用户登录事件。
         """
         image_data = data['image']
+        timestamp = data['timestamp']
         if image_data.endswith('data:,'):
             print('Empty frame data')
             emit('login_response', {'success': False, 'message': 'Empty frame data'})
             return
         image = parse_frame_data(image_data)
         success, message = authenticate_face(image)
-        emit('login_response', {'success': success, 'message': message})
+        emit('login_response', {'success': success, 'message': message, 'timestamp': timestamp})
 
 
 # 实时人脸识别的命名空间
