@@ -5,8 +5,6 @@ from PIL import Image
 from facenet_pytorch import MTCNN
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
-# 初始化MTCNN和InceptionResnetV1
 mtcnn = MTCNN(keep_all=True, device=device)
 
 
@@ -66,4 +64,3 @@ def align_face(image, box, landmark):
     aligned_face = face_image.resize((160, 160))
 
     return aligned_face
-

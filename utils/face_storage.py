@@ -1,5 +1,6 @@
-import numpy as np
 import uuid
+
+import numpy as np
 
 
 class SingletonMeta(type):
@@ -27,7 +28,7 @@ class FaceStorage(metaclass=SingletonMeta):
         self.known_faces.append(face)
         return face
 
-    def match_face(self, face_encoding, tolerance=0.6):
+    def match_face(self, face_encoding, tolerance=0.8):
         """在已知的人脸编码中寻找匹配项"""
         if not self.known_faces:
             return None

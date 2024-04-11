@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def is_face_forward(landmarks):
     """
     判断人脸是否正对相机,并考虑人脸的俯仰角。
@@ -45,6 +46,7 @@ def is_face_forward(landmarks):
         return True
     else:
         return False
+
 
 def evaluate_face_quality(box, prob, image, landmarks, quality_threshold=0.8):
     """
