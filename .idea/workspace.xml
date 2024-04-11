@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update register logic">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/authentication.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/registration.py" afterDir="false" />
+    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update register and login logic">
+      <change beforePath="$PROJECT_DIR$/business/xunfei/face_compare_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/face_compare_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/xunfei/face_feature_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/face_feature_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/face_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_detection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/face_quality.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_quality.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/face_storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_storage.py" afterDir="false" />
@@ -192,7 +191,7 @@
       <workItem from="1712669611128" duration="3659000" />
       <workItem from="1712714046736" duration="25807000" />
       <workItem from="1712800061204" duration="31218000" />
-      <workItem from="1712850734442" duration="15998000" />
+      <workItem from="1712850734442" duration="16468000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -354,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712850569044</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="update register and login logic">
+      <option name="closed" value="true" />
+      <created>1712869635423</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1712869635423</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +409,8 @@
     <MESSAGE value="implemented front-end and back-end integration of registration and login" />
     <MESSAGE value="renamed iFlytek interface module" />
     <MESSAGE value="update register logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="update register logic" />
+    <MESSAGE value="update register and login logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="update register and login logic" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/iflyface$Flask__hello_py_.coverage" NAME="Flask (hello.py) 覆盖结果" MODIFIED="1711459053617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
