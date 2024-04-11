@@ -8,7 +8,9 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, Namespace, emit, disconnect
 
 from business.face import FaceCompareClient, FaceFeatureClient
+from services.authentication import authenticate_face
 from services.recognition import recognize_faces, rename_face
+from services.registration import register_face
 from utils.image_processing import parse_frame_data
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
@@ -105,15 +107,30 @@ class FaceAuthNamespace(Namespace):
 
     def on_register(self, data):
         """
-        处理用户注册事件
+        处理用户注册事件。
         """
-        pass
+        image_data = data['image']
+        username = data['username']
+        if image_data.endswith('data:,'):
+            print('Empty frame data')
+            emit('register_response', {'success': False, 'message': 'Empty frame data'})
+            return
+        image = parse_frame_data(image_data)
+        success, message = register_face(image, username)
+        emit('register_response', {'success': success, 'message': message})
 
     def on_login(self, data):
         """
-        处理用户登录事件
+        处理用户登录事件。
         """
-        pass
+        image_data = data['image']
+        if image_data.endswith('data:,'):
+            print('Empty frame data')
+            emit('login_response', {'success': False, 'message': 'Empty frame data'})
+            return
+        image = parse_frame_data(image_data)
+        success, message = authenticate_face(image)
+        emit('login_response', {'success': success, 'message': message})
 
 
 # 实时人脸识别的命名空间

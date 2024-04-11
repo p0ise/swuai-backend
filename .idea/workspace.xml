@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="refactor">
-      <change afterPath="$PROJECT_DIR$/services/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/authentication.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/recognition.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/registration.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/face_storage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/face_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/face_recognition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/face_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/face_quality.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_quality.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +185,7 @@
       <workItem from="1712631030801" duration="3861000" />
       <workItem from="1712669611128" duration="3659000" />
       <workItem from="1712714046736" duration="25807000" />
-      <workItem from="1712800061204" duration="7134000" />
+      <workItem from="1712800061204" duration="7698000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -308,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712740097757</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="refactor">
+      <option name="closed" value="true" />
+      <created>1712817583332</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1712817583332</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
