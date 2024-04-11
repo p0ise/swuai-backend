@@ -71,7 +71,6 @@ def evaluate_face_quality(box, prob, image, landmarks, quality_threshold=0.8):
     # 综合评分
     quality_score = size_score * confidence_score
 
-    print(quality_score)
     if quality_score > quality_threshold:
         return True
     else:

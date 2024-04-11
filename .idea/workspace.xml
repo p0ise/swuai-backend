@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="implement face authentication routing logic">
+    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="renamed iFlytek interface module">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/face/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/face/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/face/face_compare_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/face_compare_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/face/face_feature_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/face_feature_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/face/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/authentication.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/registration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/face_quality.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_quality.py" afterDir="false" />
     </list>
@@ -194,7 +188,7 @@
       <workItem from="1712631030801" duration="3861000" />
       <workItem from="1712669611128" duration="3659000" />
       <workItem from="1712714046736" duration="25807000" />
-      <workItem from="1712800061204" duration="18891000" />
+      <workItem from="1712800061204" duration="30660000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -324,7 +318,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712818305452</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="implemented front-end and back-end integration of registration and login">
+      <option name="closed" value="true" />
+      <created>1712830465973</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1712830465973</updated>
+    </task>
+    <task id="LOCAL-00018" summary="renamed iFlytek interface module">
+      <option name="closed" value="true" />
+      <created>1712830511653</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1712830511653</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,12 +379,14 @@
     <MESSAGE value="update api" />
     <MESSAGE value="refactor" />
     <MESSAGE value="implement face authentication routing logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement face authentication routing logic" />
+    <MESSAGE value="implemented front-end and back-end integration of registration and login" />
+    <MESSAGE value="renamed iFlytek interface module" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed iFlytek interface module" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/iflyface$Flask__hello_py_.coverage" NAME="Flask (hello.py) 覆盖结果" MODIFIED="1711459053617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/iflyface$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711506810545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/iflyface_backend$app.coverage" NAME="app Coverage Results" MODIFIED="1712827550489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iflyface_backend$app.coverage" NAME="app Coverage Results" MODIFIED="1712850135993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/iflyface_backend$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711592940745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
