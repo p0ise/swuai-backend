@@ -12,7 +12,7 @@ from services.authentication import authenticate_face
 from services.recognition import recognize_faces, rename_face
 from services.registration import register_face
 from utils.face_detection import find_primary_face
-from utils.face_quality import is_face_forward, evaluate_face_quality
+from utils.face_quality import is_face_forward
 from utils.image_processing import parse_frame_data
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
@@ -119,10 +119,11 @@ class FaceAuthNamespace(Namespace):
         if primary_face:
             box, prob, landmark = primary_face
 
-            if is_face_forward(landmark) and evaluate_face_quality(box, prob, image, landmark):
+            if is_face_forward(landmark):
                 left, top, right, bottom = box
                 location = (top, right, bottom, left)
-                result = {'success': True, 'face': {'location': location, 'landmark': landmark.tolist()}, 'timestamp': timestamp}
+                result = {'success': True, 'face': {'location': location, 'landmark': landmark.tolist()},
+                          'timestamp': timestamp}
             else:
                 result = {'success': False, 'message': "人脸质量不符合要求或非正脸", 'timestamp': timestamp}
         else:

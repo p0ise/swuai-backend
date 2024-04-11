@@ -26,7 +26,7 @@ def authenticate_face(image):
             if matched_face:
                 return True, f"认证成功，欢迎 {matched_face['name']}"
             else:
-                return False, "认证失败，未知人脸"
+                return False, "认证失败，未知人脸，请先注册"
         else:
             return False, "人脸质量不符合要求"
     else:
