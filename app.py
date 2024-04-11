@@ -11,6 +11,8 @@ from business.xunfei import FaceCompareClient, FaceFeatureClient
 from services.authentication import authenticate_face
 from services.recognition import recognize_faces, rename_face
 from services.registration import register_face
+from utils.face_detection import find_primary_face
+from utils.face_quality import is_face_forward, evaluate_face_quality
 from utils.image_processing import parse_frame_data
 
 # Set this variable to "threading", "eventlet" or "gevent" to test the
@@ -105,35 +107,58 @@ class FaceAuthNamespace(Namespace):
     def on_disconnect(self):
         print("Client disconnected from Face Auth")
 
+    def on_frame(self, data):
+        image_data = data['image']
+        timestamp = data['timestamp']
+        if image_data.endswith('data:,'):
+            print('empty frame data')
+            return
+        image = parse_frame_data(image_data)
+
+        primary_face = find_primary_face(image)
+        if primary_face:
+            box, prob, landmark = primary_face
+
+            if is_face_forward(landmark) and evaluate_face_quality(box, prob, image, landmark):
+                left, top, right, bottom = box
+                location = (top, right, bottom, left)
+                result = {'success': True, 'face': {'location': location, 'landmark': landmark.tolist()}, 'timestamp': timestamp}
+            else:
+                result = {'success': False, 'message': "人脸质量不符合要求或非正脸", 'timestamp': timestamp}
+        else:
+            result = {'success': False, 'message': "未检测到人脸", 'timestamp': timestamp}
+
+        emit('detection_result', result)
+
     def on_register(self, data):
         """
         处理用户注册事件。
         """
-        print(data)
         image_data = data['image']
         username = data['username']
-        timestamp = data['timestamp']
         if image_data.endswith('data:,'):
-            print('Empty frame data')
-            emit('register_response', {'success': False, 'message': 'Empty frame data'})
-            return
-        image = parse_frame_data(image_data)
-        success, message = register_face(image, username)
-        emit('register_response', {'success': success, 'message': message, 'timestamp': timestamp})
+            result = {'success': False, 'message': "帧数据为空"}
+        else:
+            image = parse_frame_data(image_data)
+            success, message = register_face(image, username)
+            result = {'success': success, 'message': message}
+
+        emit('register_response', result)
 
     def on_login(self, data):
         """
         处理用户登录事件。
         """
         image_data = data['image']
-        timestamp = data['timestamp']
         if image_data.endswith('data:,'):
             print('Empty frame data')
-            emit('login_response', {'success': False, 'message': 'Empty frame data'})
-            return
-        image = parse_frame_data(image_data)
-        success, message = authenticate_face(image)
-        emit('login_response', {'success': success, 'message': message, 'timestamp': timestamp})
+            result = {'success': False, 'message': "帧数据为空"}
+        else:
+            image = parse_frame_data(image_data)
+            success, message = authenticate_face(image)
+            result = {'success': success, 'message': message}
+
+        emit('login_response', result)
 
 
 # 实时人脸识别的命名空间

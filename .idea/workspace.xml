@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="renamed iFlytek interface module">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/registration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/face_quality.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_quality.py" afterDir="false" />
-    </list>
+    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update register logic" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,7 +183,7 @@
       <workItem from="1712631030801" duration="3861000" />
       <workItem from="1712669611128" duration="3659000" />
       <workItem from="1712714046736" duration="25807000" />
-      <workItem from="1712800061204" duration="30660000" />
+      <workItem from="1712800061204" duration="31033000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -334,7 +329,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712830511653</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update register logic">
+      <option name="closed" value="true" />
+      <created>1712850404800</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1712850404800</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,7 +384,8 @@
     <MESSAGE value="implement face authentication routing logic" />
     <MESSAGE value="implemented front-end and back-end integration of registration and login" />
     <MESSAGE value="renamed iFlytek interface module" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed iFlytek interface module" />
+    <MESSAGE value="update register logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="update register logic" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/iflyface$Flask__hello_py_.coverage" NAME="Flask (hello.py) 覆盖结果" MODIFIED="1711459053617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
