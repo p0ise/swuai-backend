@@ -7,7 +7,7 @@ from flask import jsonify
 from flask_cors import CORS
 from flask_socketio import SocketIO, Namespace, emit, disconnect
 
-from business.xunfei import FaceCompareClient, FaceFeatureClient
+from business.xunfei import FaceCompareClient, FaceFeatureClient, SparkAPI
 from services.authentication import authenticate_face
 from services.recognition import recognize_faces, rename_face
 from services.registration import register_face
@@ -196,9 +196,42 @@ class FaceRecognitionNamespace(Namespace):
         print('Client disconnected from Face Recognition', request.sid)
 
 
+class ChatNamespace(Namespace):
+
+    def on_connect(self):
+        print("Client connected to Chat")
+
+    def on_disconnect(self):
+        print('Client disconnected from Chat', request.sid)
+    def on_send_message(self, data):
+        messages = data['messages']
+        spark_api = SparkAPI()
+        spark_api.connect_and_query(self.on_response, messages)
+        return jsonify({"status": "connecting"})
+
+    def on_response(self, data):
+        if data['header']['code'] != 0:
+            emit('error', {'error': f"Error from API: {data['header']['code']}"})
+        else:
+            choices = data["payload"]['choices']
+            status = choices['status']
+            seq = choices['seq']
+            text = choices['text'][0]
+            emit('message_response', {
+                'status': status,
+                'seq': seq,
+                'text': {
+                    'role': text['role'],
+                    'content': text['content']
+                }
+            })
+
+
 # 注册命名空间
 socketio.on_namespace(FaceAuthNamespace('/api/face-auth'))
 socketio.on_namespace(FaceRecognitionNamespace('/api/face-recognition'))
+
+socketio.on_namespace(ChatNamespace('/api/chat'))
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)

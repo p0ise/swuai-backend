@@ -13,6 +13,7 @@ flask-cors = "^4.0.0"
 flask-socketio = "^5.3.6"
 opencv-python = "^4.9.0.80"
 facenet-pytorch = "^2.5.3"
+websocket-client = "^1.7.0"
 
 
 [build-system]

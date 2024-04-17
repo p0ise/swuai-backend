@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update register and login logic">
-      <change beforePath="$PROJECT_DIR$/business/xunfei/face_compare_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/face_compare_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/business/xunfei/face_feature_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/face_feature_client.py" afterDir="false" />
+    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="update env file">
+      <change afterPath="$PROJECT_DIR$/business/xunfei/spark.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/xunfei/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/business/xunfei/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/business/xunfei/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/face_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/face_quality.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_quality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/face_storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_storage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/authentication.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/authentication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/registration.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,28 +65,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Flask 服务器.Flask (hello.py).executor&quot;: &quot;Run&quot;,
-    &quot;Flask 服务器.iflyface.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.face_recognition.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ADMIN/PycharmProjects/iflyface-backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Flask 服务器.Flask (hello.py).executor": "Run",
+    "Flask 服务器.iflyface.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.face_recognition.executor": "Run",
+    "Python.spark.executor": "Run",
+    "Python.sparkdemo.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/ADMIN/PycharmProjects/iflyface-backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ADMIN\PycharmProjects\iflyface-backend" />
@@ -191,7 +195,10 @@
       <workItem from="1712669611128" duration="3659000" />
       <workItem from="1712714046736" duration="25807000" />
       <workItem from="1712800061204" duration="31218000" />
-      <workItem from="1712850734442" duration="16468000" />
+      <workItem from="1712850734442" duration="25570000" />
+      <workItem from="1712943532796" duration="1374000" />
+      <workItem from="1712992061510" duration="3315000" />
+      <workItem from="1713258825101" duration="21526000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -361,7 +368,31 @@
       <option name="project" value="LOCAL" />
       <updated>1712869635423</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="optimize algorithm performance">
+      <option name="closed" value="true" />
+      <created>1712869699723</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1712869699723</updated>
+    </task>
+    <task id="LOCAL-00023" summary="reformat code">
+      <option name="closed" value="true" />
+      <created>1712869730458</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1712869730458</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update env file">
+      <option name="closed" value="true" />
+      <created>1712869744915</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1712869744915</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,7 +430,6 @@
     <MESSAGE value="fix some bugs and optimize the api" />
     <MESSAGE value="update env files" />
     <MESSAGE value="add .gitignore" />
-    <MESSAGE value="update env file" />
     <MESSAGE value="Bug fix: deal with when face_compare return non-zero ret" />
     <MESSAGE value="update project structure" />
     <MESSAGE value="update project dependencies" />
@@ -410,12 +440,17 @@
     <MESSAGE value="renamed iFlytek interface module" />
     <MESSAGE value="update register logic" />
     <MESSAGE value="update register and login logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="update register and login logic" />
+    <MESSAGE value="optimize algorithm performance" />
+    <MESSAGE value="reformat code" />
+    <MESSAGE value="update env file" />
+    <option name="LAST_COMMIT_MESSAGE" value="update env file" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/iflyface$Flask__hello_py_.coverage" NAME="Flask (hello.py) 覆盖结果" MODIFIED="1711459053617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/iflyface$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711506810545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/iflyface_backend$app.coverage" NAME="app 覆盖结果" MODIFIED="1712865779455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iflyface_backend$app.coverage" NAME="app 覆盖结果" MODIFIED="1713278083806" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iflyface_backend$spark.coverage" NAME="spark 覆盖结果" MODIFIED="1713276481903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/business/xunfei" />
     <SUITE FILE_PATH="coverage/iflyface_backend$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711592940745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iflyface_backend$sparkdemo.coverage" NAME="sparkdemo 覆盖结果" MODIFIED="1713272479358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/business/xunfei" />
   </component>
 </project>
