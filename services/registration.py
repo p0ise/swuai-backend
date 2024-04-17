@@ -27,7 +27,7 @@ def register_face(image, username):
             if matched_face is None:
                 face = face_storage.add_known_face(face_encoding, username)
                 face_id = face['id']
-                return True, f"用户 {username} 注册成功！人脸ID：{face_id}"
+                return True, username
             else:
                 return False, "人脸已注册"
         else:

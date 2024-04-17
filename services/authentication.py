@@ -24,7 +24,7 @@ def authenticate_face(image):
             face_encoding = encode_face(aligned_face)
             matched_face = face_storage.match_face(face_encoding)
             if matched_face:
-                return True, f"认证成功，欢迎 {matched_face['name']}"
+                return True, matched_face['name']
             else:
                 return False, "认证失败，未知人脸，请先注册"
         else:
