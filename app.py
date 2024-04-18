@@ -203,6 +203,7 @@ class ChatNamespace(Namespace):
 
     def on_disconnect(self):
         print('Client disconnected from Chat', request.sid)
+
     def on_send_message(self, data):
         messages = data['messages']
         spark_api = SparkAPI()
