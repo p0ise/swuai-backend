@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="modify the authentication return interface">
+    <list default="true" id="7b120f79-9687-44da-9988-5f0a17a46fa3" name="更改" comment="reformat code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/face_storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/face_storage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,6 +193,7 @@
       <workItem from="1712943532796" duration="1374000" />
       <workItem from="1712992061510" duration="3315000" />
       <workItem from="1713258825101" duration="38661000" />
+      <workItem from="1713400352732" duration="4804000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -401,7 +403,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713323328040</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="remove debug print">
+      <option name="closed" value="true" />
+      <created>1713400385116</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1713400385117</updated>
+    </task>
+    <task id="LOCAL-00028" summary="reformat code">
+      <option name="closed" value="true" />
+      <created>1713400640524</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1713400640524</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,16 +468,17 @@
     <MESSAGE value="update register logic" />
     <MESSAGE value="update register and login logic" />
     <MESSAGE value="optimize algorithm performance" />
-    <MESSAGE value="reformat code" />
     <MESSAGE value="update env file" />
     <MESSAGE value="add spark api" />
     <MESSAGE value="modify the authentication return interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify the authentication return interface" />
+    <MESSAGE value="remove debug print" />
+    <MESSAGE value="reformat code" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/iflyface$Flask__hello_py_.coverage" NAME="Flask (hello.py) 覆盖结果" MODIFIED="1711459053617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/iflyface$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711506810545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/iflyface_backend$app.coverage" NAME="app 覆盖结果" MODIFIED="1713364168335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/iflyface_backend$app.coverage" NAME="app 覆盖结果" MODIFIED="1713400532829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/iflyface_backend$spark.coverage" NAME="spark 覆盖结果" MODIFIED="1713276481903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/business/xunfei" />
     <SUITE FILE_PATH="coverage/iflyface_backend$iflyface.coverage" NAME="iflyface 覆盖结果" MODIFIED="1711592940745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/iflyface_backend$sparkdemo.coverage" NAME="sparkdemo 覆盖结果" MODIFIED="1713272479358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/business/xunfei" />
