@@ -211,6 +211,7 @@ class ChatNamespace(Namespace):
 
     def on_response(self, data):
         if data['header']['code'] != 0:
+            print(data['header']['code'])
             emit('error', {'error': f"Error from API: {data['header']['code']}"})
         else:
             choices = data["payload"]['choices']

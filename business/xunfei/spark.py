@@ -44,7 +44,6 @@ class SparkAPI:
 
     def _create_signature(self, date: str) -> str:
         signature_origin = f"host: {self.host}\ndate: {date}\nGET {self.path} HTTP/1.1"
-        print(signature_origin)
         signature_sha = hmac.new(self.api_secret.encode('utf-8'), signature_origin.encode('utf-8'),
                                  hashlib.sha256).digest()
         return base64.b64encode(signature_sha).decode('utf-8')
